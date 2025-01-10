@@ -1,0 +1,22 @@
+name: XCodeBuild
+
+on:
+  workflow_dispatch:
+
+  pull_request:
+
+jobs:
+  build:
+    name: Build
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup
+        run:
+          xcodes select 16.1
+
+      - name: Build
+        run:
+          xcodebuild -scheme OEXFirebaseAnalytics -destination 'platform=iOS Simulator,name=iPhone SE (3rd generation)' -skipPackagePluginValidation -skipMacroValidation build
