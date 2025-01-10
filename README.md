@@ -33,9 +33,9 @@ EDXMobileAnalytics is a Swift plugin for integrating analytics in edX iOS mobile
 
 #### Step 2 
 Import the library in your Swift code:
-    ```swift
-    import EDXMobileAnalytics
-    ```
+```swift
+import EDXMobileAnalytics
+```
 
 ## Usage
 
