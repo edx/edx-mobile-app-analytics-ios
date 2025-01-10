@@ -98,18 +98,10 @@ func logEvent(_ event: String, parameters: [String: Any]?)
 func logScreenEvent(_ event: String, parameters: [String: Any]?)
 ```
 
-## Documentation
-
-Detailed documentation can be found in the [Wiki](https://github.com/edx/edx-mobile-app-analytics-ios/wiki).
-
-## Contributing
-
-Contributions are welcome! Please refer to the [Contributing Guidelines](CONTRIBUTING.md) for more information.
-
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## Contact
 
-For any questions or issues, please file a GitHub issue or contact the maintainers at [support@example.com](mailto:support@example.com).
+For any questions or issues, please file a GitHub issue or contact the maintainers at [TBD](mailto:TBD).
