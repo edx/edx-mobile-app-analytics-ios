@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: 'edx-mobile-app-analytics-ios'
+  annotations:
+    edx.org/release: "master"
+spec:
+  owner: group:edx-mobile-push
+  type: 'mobile'
+  lifecycle: 'production'

@@ -18,7 +18,8 @@ let package = Package(
         .package(url: "https://github.com/rnr/openedx-app-foundation-ios.git", branch: "anton/plugins-experiments"),
         .package(url: "https://github.com/segmentio/analytics-swift.git", from: "1.5.3"),
         .package(url: "https://github.com/segment-integrations/analytics-swift-firebase", from: "1.3.5"),
-        .package(url: "https://github.com/braze-inc/braze-segment-swift.git", from: "2.2.0")
+        .package(url: "https://github.com/braze-inc/braze-segment-swift.git", from: "2.2.0"),
+        .package(url: "https://github.com/SimplyDanny/SwiftLintPlugins", from: "0.57.0")
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -30,6 +31,9 @@ let package = Package(
                 .product(name: "Segment", package: "analytics-swift"),
                 .product(name: "SegmentFirebase", package: "analytics-swift-firebase"),
                 .product(name: "SegmentBraze", package: "braze-segment-swift")
+            ],
+            plugins: [
+                .plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins")
             ]
         ),
         .testTarget(
