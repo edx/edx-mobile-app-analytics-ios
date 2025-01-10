@@ -13,9 +13,7 @@ final public class BrazeProvider: PushNotificationsProvider {
     
     private let segmentAnalyticService: SegmentAnalyticsService?
     
-    public init(segmentAnalyticService: SegmentAnalyticsService? = nil) {
-        self.segmentAnalyticService = segmentAnalyticService
-    }
+    public init(segmentAnalyticService: SegmentAnalyticsService? = nil) { self.segmentAnalyticService = segmentAnalyticService }
     
     public func didRegisterWithDeviceToken(deviceToken: Data) {
         guard let segmentService = segmentAnalyticService else { return }
