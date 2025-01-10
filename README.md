@@ -83,6 +83,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 ## Features
 
+To use the analytics capabilities, you must use `AnalyticsManager` with the appropriate methods:
+
 ### User Identification
 ```swift
 func identify(id: String, username: String?, email: String?)
