@@ -19,4 +19,4 @@ jobs:
 
       - name: Build
         run:
-          xcodebuild -scheme OEXFirebaseAnalytics -destination 'platform=iOS Simulator,name=iPhone SE (3rd generation)' -skipPackagePluginValidation -skipMacroValidation build
+          xcodebuild -scheme EDXMobileAnalytics -destination 'platform=iOS Simulator,name=iPhone SE (3rd generation)' -skipPackagePluginValidation -skipMacroValidation build
