@@ -58,24 +58,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func initPlugins() {
         // - Segment analytic
-        if config.segment.enabled {
-            pluginManager.addPlugin(analyticsService: Container.shared.resolve(SegmentAnalyticsService.self)!)
-        }
+        let SegmentAnalyticsService = SegmentAnalyticsService(
+            writeKey: "your_writeKey",
+            firebaseAnalyticSourceIsSegment: true // or false
+        )
+        pluginManager.addPlugin(analyticsService: SegmentAnalyticsService)
+        
         // - Braze
-        if config.braze.pushNotificationsEnabled,
-            let deepLinkManager = Container.shared.resolve(DeepLinkManager.self) {
-            pluginManager.addPlugin(
-                pushNotificationsProvider:
-                    BrazeProvider(
-                        segmentAnalyticService: Container.shared.resolve(SegmentAnalyticsService.self)
-                    ),
-                pushNotificationsListener:
-                    BrazeListener(
-                        deepLinkManager: deepLinkManager,
-                        segmentAnalyticService: Container.shared.resolve(SegmentAnalyticsService.self)
-                    )
-            )
-        }
+        let deepLinkManager = DeepLinkManager() // init DeepLinkManager here
+        pluginManager.addPlugin(
+            pushNotificationsProvider:
+                BrazeProvider(
+                    segmentAnalyticService: SegmentAnalyticsService
+                ),
+            pushNotificationsListener:
+                BrazeListener(
+                    deepLinkManager: deepLinkManager,
+                    segmentAnalyticService: SegmentAnalyticsService
+                )
+        )
         
     }
 }
