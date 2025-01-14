@@ -10,8 +10,14 @@ import OEXFoundation
 @preconcurrency import Segment
 import SegmentFirebase
 
-final public class SegmentAnalyticsService: AnalyticsService {
-    public let analytics: Analytics?
+public protocol SegmentAnalyticsServiceProtocol: AnalyticsService {
+    func receivedRemoteNotification(userInfo: [AnyHashable: Any])
+    func registeredForRemoteNotifications(deviceToken: Data)
+    func add(plugin: Plugin)
+}
+
+final public class SegmentAnalyticsService: SegmentAnalyticsServiceProtocol {
+    private let analytics: Analytics?
     
     // Init manager
     public init(writeKey: String, firebaseAnalyticSourceIsSegment: Bool) {
@@ -42,5 +48,17 @@ final public class SegmentAnalyticsService: AnalyticsService {
     
     public func logScreenEvent(_ event: String, parameters: [String: Any]?) {
         analytics?.screen(title: event, properties: parameters)
+    }
+    
+    public func receivedRemoteNotification(userInfo: [AnyHashable: Any]) {
+        analytics?.receivedRemoteNotification(userInfo: userInfo)
+    }
+    
+    public func registeredForRemoteNotifications(deviceToken: Data) {
+        analytics?.registeredForRemoteNotifications(deviceToken: deviceToken)
+    }
+    
+    public func add(plugin: Plugin) {
+        analytics?.add(plugin: plugin)
     }
 }
