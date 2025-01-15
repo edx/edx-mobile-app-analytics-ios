@@ -65,7 +65,8 @@ private extension BrazeListenerTests {
         @Test("Should set default value") func check1() async throws {
             let deepLinkMananger = DeepLinkManagerProtocolMock()
             let brazeListener = BrazeListener(deepLinkManager: deepLinkMananger)
-            let analyticService = Mirror(reflecting: brazeListener).descendant("segmentAnalyticService") as? SegmentAnalyticsServiceProtocol
+            let analyticService = Mirror(reflecting: brazeListener)
+                .descendant("segmentAnalyticService") as? SegmentAnalyticsServiceProtocol
             #expect(analyticService == nil)
         }
     }
