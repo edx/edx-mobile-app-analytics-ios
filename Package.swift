@@ -38,7 +38,10 @@ let package = Package(
         ),
         .testTarget(
             name: "EDXMobileAnalyticsTests",
-            dependencies: ["EDXMobileAnalytics"]
+            dependencies: ["EDXMobileAnalytics"],
+            plugins: [
+                .plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins")
+            ]
         )
     ]
 )

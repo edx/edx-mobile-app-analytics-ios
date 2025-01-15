@@ -30,7 +30,6 @@ private extension BrazeProviderTests {
             #expect(segmentAnalyticService.registeredForRemoteNotificationsDeviceToken.isEmpty)
         }
         
-        
         @Test("When segmentAnalyticService is not nil should call segmentAnalyticService methods")
         func check2() async throws {
             let brazeProvider: BrazeProvider = .init(segmentAnalyticService: segmentAnalyticService)

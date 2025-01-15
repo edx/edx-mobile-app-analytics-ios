@@ -4,11 +4,10 @@ import OEXFoundation
 import Segment
 import Foundation
 
-
 private extension BrazeListenerTests {
     enum TestData {
-        nonisolated(unsafe) static let dataWithoutNeededKey: [AnyHashable : Any] = ["abc": ["c": "c_value"]]
-        nonisolated(unsafe) static let dataWithNeededKey: [AnyHashable : Any] = ["ab": ["c": "c_value"]]
+        nonisolated(unsafe) static let dataWithoutNeededKey: [AnyHashable: Any] = ["abc": ["c": "c_value"]]
+        nonisolated(unsafe) static let dataWithNeededKey: [AnyHashable: Any] = ["ab": ["c": "c_value"]]
     }
 }
 

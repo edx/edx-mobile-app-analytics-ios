@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "9C579E52-1C40-498C-A511-1565F9BFD1AE",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "EDXMobileAnalyticsTests",
+        "name" : "EDXMobileAnalyticsTests"
+      }
+    }
+  ],
+  "version" : 1
+}
