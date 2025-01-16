@@ -11,15 +11,15 @@ import SegmentBraze
 
 final public class BrazeProvider: PushNotificationsProvider {
     
-    private let segmentAnalyticService: SegmentAnalyticsService?
+    private let segmentAnalyticService: SegmentAnalyticsServiceProtocol?
     
-    public init(segmentAnalyticService: SegmentAnalyticsService? = nil) {
+    public init(segmentAnalyticService: SegmentAnalyticsServiceProtocol? = nil) {
         self.segmentAnalyticService = segmentAnalyticService
     }
     
     public func didRegisterWithDeviceToken(deviceToken: Data) {
         guard let segmentService = segmentAnalyticService else { return }
-        segmentService.analytics?.add(
+        segmentService.add(
             plugin: BrazeDestination(
                 additionalConfiguration: { configuration in
                     configuration.logger.level = .info
@@ -29,15 +29,6 @@ final public class BrazeProvider: PushNotificationsProvider {
             )
         )
         
-        segmentService.analytics?.registeredForRemoteNotifications(deviceToken: deviceToken)
-    }
-    
-    public func didFailToRegisterForRemoteNotificationsWithError(error: Error) {
-    }
-    
-    public func synchronizeToken() {
-    }
-    
-    public func refreshToken() {
+        segmentService.registeredForRemoteNotifications(deviceToken: deviceToken)
     }
 }
