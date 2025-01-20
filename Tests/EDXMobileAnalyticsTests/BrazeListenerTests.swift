@@ -15,11 +15,11 @@ private extension BrazeListenerTests {
     @MainActor
     @Suite(".shouldListenNotification") struct ShouldListenNotification {
         let deepLinkMananger = DeepLinkManagerProtocolMock()
-        let segmentAnalyticService = SegmentAnalyticsServiceMock()
+        let segmentAnalyticsService = SegmentAnalyticsServiceMock()
         var brazeListener: BrazeListener {
             BrazeListener(
                 deepLinkManager: deepLinkMananger,
-                segmentAnalyticService: segmentAnalyticService
+                segmentAnalyticsService: segmentAnalyticsService
             )
         }
         
@@ -34,26 +34,26 @@ private extension BrazeListenerTests {
     @MainActor
     @Suite(".didReceiveRemoteNotification") struct DidReceiveRemoteNotification {
         let deepLinkMananger = DeepLinkManagerProtocolMock()
-        let segmentAnalyticService = SegmentAnalyticsServiceMock()
+        let segmentAnalyticsService = SegmentAnalyticsServiceMock()
         var brazeListener: BrazeListener {
             BrazeListener(
                 deepLinkManager: deepLinkMananger,
-                segmentAnalyticService: segmentAnalyticService
+                segmentAnalyticsService: segmentAnalyticsService
             )
         }
 
         @Test("When shouldListenNotification returns false should do nothing") func check1() async throws {
             brazeListener.didReceiveRemoteNotification(userInfo: TestData.dataWithoutNeededKey)
-            #expect(segmentAnalyticService.receivedRemoteNotificationCount == 0)
+            #expect(segmentAnalyticsService.receivedRemoteNotificationCount == 0)
             #expect(deepLinkMananger.processLinkFromCallsCount == 0)
         }
         
         @Test("When shouldListenNotification returns true should call processLinkFrom") func check2() async throws {
             brazeListener.didReceiveRemoteNotification(userInfo: TestData.dataWithNeededKey)
-            #expect(segmentAnalyticService.receivedRemoteNotificationCount == 1)
+            #expect(segmentAnalyticsService.receivedRemoteNotificationCount == 1)
             #expect(deepLinkMananger.processLinkFromCallsCount == 1)
             #expect(
-                segmentAnalyticService.receivedRemoteNotificationUserInfo["ab"] as? [String: String] ==
+                segmentAnalyticsService.receivedRemoteNotificationUserInfo["ab"] as? [String: String] ==
                 TestData.dataWithNeededKey["ab"] as? [String: String]
             )
         }
@@ -64,9 +64,9 @@ private extension BrazeListenerTests {
         @Test("Should set default value") func check1() async throws {
             let deepLinkMananger = DeepLinkManagerProtocolMock()
             let brazeListener = BrazeListener(deepLinkManager: deepLinkMananger)
-            let analyticService = Mirror(reflecting: brazeListener)
-                .descendant("segmentAnalyticService") as? SegmentAnalyticsServiceProtocol
-            #expect(analyticService == nil)
+            let analyticsService = Mirror(reflecting: brazeListener)
+                .descendant("segmentAnalyticsService") as? SegmentAnalyticsServiceProtocol
+            #expect(analyticsService == nil)
         }
     }
 }

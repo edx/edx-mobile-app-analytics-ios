@@ -11,14 +11,14 @@ import OEXFoundation
 public class BrazeListener: PushNotificationsListener {
     
     private let deepLinkManager: DeepLinkManagerProtocol
-    private let segmentAnalyticService: SegmentAnalyticsServiceProtocol?
+    private let segmentAnalyticsService: SegmentAnalyticsServiceProtocol?
     
     public init(
         deepLinkManager: DeepLinkManagerProtocol,
-        segmentAnalyticService: SegmentAnalyticsServiceProtocol? = nil
+        segmentAnalyticsService: SegmentAnalyticsServiceProtocol? = nil
     ) {
         self.deepLinkManager = deepLinkManager
-        self.segmentAnalyticService = segmentAnalyticService
+        self.segmentAnalyticsService = segmentAnalyticsService
     }
     
     public func shouldListenNotification(userinfo: [AnyHashable: Any]) -> Bool {
@@ -30,7 +30,7 @@ public class BrazeListener: PushNotificationsListener {
     public func didReceiveRemoteNotification(userInfo: [AnyHashable: Any]) {
         guard shouldListenNotification(userinfo: userInfo) else { return }
         
-        segmentAnalyticService?.receivedRemoteNotification(userInfo: userInfo)
+        segmentAnalyticsService?.receivedRemoteNotification(userInfo: userInfo)
         deepLinkManager.processLinkFrom(userInfo: userInfo)
     }
 }
