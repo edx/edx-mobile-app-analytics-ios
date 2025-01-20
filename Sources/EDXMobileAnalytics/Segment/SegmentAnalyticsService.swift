@@ -9,6 +9,7 @@ import Foundation
 import OEXFoundation
 @preconcurrency import Segment
 import SegmentFirebase
+import TestableMacro
 
 public protocol SegmentAnalyticsServiceProtocol: AnalyticsService {
     func receivedRemoteNotification(userInfo: [AnyHashable: Any])
@@ -16,49 +17,53 @@ public protocol SegmentAnalyticsServiceProtocol: AnalyticsService {
     func add(plugin: Plugin)
 }
 
+@Testable
 final public class SegmentAnalyticsService: SegmentAnalyticsServiceProtocol {
-    private let analytics: Analytics?
+    private let analytics: Analytics
     
     // Init manager
-    public init(writeKey: String, firebaseAnalyticSourceIsSegment: Bool) {
+    public init(writeKey: String, addFirebaseAnalytics: Bool) {
         let configuration = Configuration(writeKey: writeKey)
                         .trackApplicationLifecycleEvents(true)
                         .flushInterval(10)
         analytics = Analytics(configuration: configuration)
-        if firebaseAnalyticSourceIsSegment {
-            analytics?.add(plugin: FirebaseDestination())
+        if addFirebaseAnalytics {
+            analytics.add(plugin: FirebaseDestination())
         }
     }
     
     public func identify(id: String, username: String?, email: String?) {
-        guard let email = email, let username = username else { return }
+        guard let email = email, let username = username else {
+            assertionFailure("Email and Username are required for identifying user")
+            return
+        }
         let traits: [String: String] = [
             "email": email,
             "username": username
         ]
-        analytics?.identify(userId: id, traits: traits)
+        analytics.identify(userId: id, traits: traits)
     }
     
     public func logEvent(_ event: String, parameters: [String: Any]?) {
-        analytics?.track(
+        analytics.track(
             name: event,
             properties: parameters
         )
     }
     
     public func logScreenEvent(_ event: String, parameters: [String: Any]?) {
-        analytics?.screen(title: event, properties: parameters)
+        analytics.screen(title: event, properties: parameters)
     }
     
     public func receivedRemoteNotification(userInfo: [AnyHashable: Any]) {
-        analytics?.receivedRemoteNotification(userInfo: userInfo)
+        analytics.receivedRemoteNotification(userInfo: userInfo)
     }
     
     public func registeredForRemoteNotifications(deviceToken: Data) {
-        analytics?.registeredForRemoteNotifications(deviceToken: deviceToken)
+        analytics.registeredForRemoteNotifications(deviceToken: deviceToken)
     }
     
     public func add(plugin: Plugin) {
-        analytics?.add(plugin: plugin)
+        analytics.add(plugin: plugin)
     }
 }

@@ -1,7 +1,7 @@
 
 # EDXMobileAnalytics
 
-[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue?style=flat-square)](LICENSE)
 
 EDXMobileAnalytics is a Swift plugin for integrating analytics in edX iOS mobile applications. This plugin includes support for **Segment Analytics** and **Braze** (via Segment) to help developers efficiently track user behavior and events within their apps.
 
@@ -57,10 +57,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func initPlugins() {
-        // - Segment analytic
+        // - Segment analyticы
         let SegmentAnalyticsService = SegmentAnalyticsService(
             writeKey: "your_writeKey",
-            firebaseAnalyticSourceIsSegment: true // or false
+            addFirebaseAnalytics: true // or false
         )
         pluginManager.addPlugin(analyticsService: SegmentAnalyticsService)
         
@@ -69,12 +69,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         pluginManager.addPlugin(
             pushNotificationsProvider:
                 BrazeProvider(
-                    segmentAnalyticService: SegmentAnalyticsService
+                    segmentAnalyticsService: SegmentAnalyticsService
                 ),
             pushNotificationsListener:
                 BrazeListener(
                     deepLinkManager: deepLinkManager,
-                    segmentAnalyticService: SegmentAnalyticsService
+                    segmentAnalyticsService: SegmentAnalyticsService
                 )
         )
         
@@ -103,7 +103,7 @@ func logScreenEvent(_ event: String, parameters: [String: Any]?)
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the Apache License, Version 2.0. See the [LICENSE](LICENSE) file for details.
 
 ## Contact
 

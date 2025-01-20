@@ -1,5 +1,5 @@
 {
-  "originHash" : "24865ce1a5bdb12bdf2082dc9a6b3b327986ee32238127921bf6e08f58b56e7f",
+  "originHash" : "aa75406ff97bf77af672c326455e75425b255f9dca089e8766327c96248e2f30",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -218,6 +218,15 @@
       }
     },
     {
+      "identity" : "swift-syntax",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/swiftlang/swift-syntax.git",
+      "state" : {
+        "revision" : "0687f71944021d616d34d922343dcef086855920",
+        "version" : "600.0.1"
+      }
+    },
+    {
       "identity" : "swiftlintplugins",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SimplyDanny/SwiftLintPlugins",
@@ -242,6 +251,15 @@
       "state" : {
         "revision" : "be9dbcc7b86811bc131539a20c6f9c2d3e56919f",
         "version" : "2.9.1"
+      }
+    },
+    {
+      "identity" : "testablemacro",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/fernandolucheti/TestableMacro.git",
+      "state" : {
+        "revision" : "84b111ae97f2e5cb4d84115edd0ebc145147ee00",
+        "version" : "0.0.2"
       }
     }
   ],

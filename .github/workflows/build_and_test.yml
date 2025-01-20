@@ -1,7 +1,7 @@
 # This workflow will test a Swift project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-swift
 
-name: Unit Tests
+name: Xcode
 
 on:
   - pull_request
@@ -12,7 +12,7 @@ concurrency:
 
 jobs:
   test-ios:
-    name: iOS 18.1
+    name: Build and Test (iOS 18.1)
     runs-on: macos-latest
     env:
       DEVELOPER_DIR: "/Applications/Xcode_16.1.app/Contents/Developer"
@@ -22,12 +22,20 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
       
-      # Run Unit Tests
+    # Build
+    - name: Build
+      run: |
+        xcodebuild build\
+          -scheme EDXMobileAnalytics \
+          -destination 'platform=iOS Simulator,name=iPhone SE (3rd generation)' \
+          -skipPackagePluginValidation \
+          -skipMacroValidation 
+      
+    # Run Unit Tests
     - name: Run tests
       run: |
         xcodebuild test \
           -scheme EDXMobileAnalytics \
-          -sdk iphonesimulator \
           -destination "OS=18.1,name=iPhone 16 Pro" \
           -skipPackagePluginValidation \
           -skipMacroValidation
