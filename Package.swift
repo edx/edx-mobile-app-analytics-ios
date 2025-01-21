@@ -31,7 +31,8 @@ let package = Package(
                 .product(name: "OEXFoundation", package: "openedx-app-foundation-ios"),
                 .product(name: "Segment", package: "analytics-swift"),
                 .product(name: "SegmentFirebase", package: "analytics-swift-firebase"),
-                .product(name: "SegmentBraze", package: "braze-segment-swift")
+                .product(name: "SegmentBraze", package: "braze-segment-swift"),
+                .product(name: "TestableMacro", package: "TestableMacro")
             ],
             plugins: [
                 .plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins")
