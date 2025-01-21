@@ -26,10 +26,10 @@ jobs:
     - name: Build
       run: |
         xcodebuild build\
-        -scheme EDXMobileAnalytics \
-        -destination 'platform=iOS Simulator,name=iPhone SE (3rd generation)' \
-        -skipPackagePluginValidation \
-        -skipMacroValidation 
+          -scheme EDXMobileAnalytics \
+          -destination 'platform=iOS Simulator,name=iPhone SE (3rd generation)' \
+          -skipPackagePluginValidation \
+          -skipMacroValidation 
       
     # Run Unit Tests
     - name: Run tests
