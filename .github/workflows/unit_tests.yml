@@ -27,7 +27,6 @@ jobs:
       run: |
         xcodebuild test \
           -scheme EDXMobileAnalytics \
-          -sdk iphonesimulator \
           -destination "OS=18.1,name=iPhone 16 Pro" \
           -skipPackagePluginValidation \
           -skipMacroValidation
