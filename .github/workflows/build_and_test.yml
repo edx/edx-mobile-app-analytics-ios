@@ -12,7 +12,7 @@ concurrency:
 
 jobs:
   test-ios:
-    name: iOS 18.1
+    name: Build and Test (iOS 18.1)
     runs-on: macos-latest
     env:
       DEVELOPER_DIR: "/Applications/Xcode_16.1.app/Contents/Developer"
@@ -22,7 +22,16 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
       
-      # Run Unit Tests
+    # Build
+    - name: Build
+      run: |
+        xcodebuild build\
+        -scheme EDXMobileAnalytics \
+        -destination 'platform=iOS Simulator,name=iPhone SE (3rd generation)' \
+        -skipPackagePluginValidation \
+        -skipMacroValidation 
+      
+    # Run Unit Tests
     - name: Run tests
       run: |
         xcodebuild test \
