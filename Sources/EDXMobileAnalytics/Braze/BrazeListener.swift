@@ -7,7 +7,9 @@
 
 import Foundation
 import OEXFoundation
+import TestableMacro
 
+@Testable
 public class BrazeListener: PushNotificationsListener {
     
     private let deepLinkManager: DeepLinkManagerProtocol

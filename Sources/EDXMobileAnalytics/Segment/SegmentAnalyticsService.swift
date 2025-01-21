@@ -9,6 +9,7 @@ import Foundation
 import OEXFoundation
 @preconcurrency import Segment
 import SegmentFirebase
+import TestableMacro
 
 public protocol SegmentAnalyticsServiceProtocol: AnalyticsService {
     func receivedRemoteNotification(userInfo: [AnyHashable: Any])
@@ -16,6 +17,7 @@ public protocol SegmentAnalyticsServiceProtocol: AnalyticsService {
     func add(plugin: Plugin)
 }
 
+@Testable
 final public class SegmentAnalyticsService: SegmentAnalyticsServiceProtocol {
     private let analytics: Analytics
     
