@@ -7,6 +7,7 @@
 
 import Foundation
 import Segment
+import EDXMobileAnalytics
 
 final class SegmentAnalyticsServiceMock: SegmentAnalyticsServiceProtocol, @unchecked Sendable {
     var registeredForRemoteNotificationsCallsCount: Int = 0
