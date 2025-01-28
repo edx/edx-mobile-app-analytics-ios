@@ -15,7 +15,7 @@ let package = Package(
             targets: ["EDXMobileAnalytics"])
     ],
     dependencies: [
-        .package(url: "https://github.com/rnr/openedx-app-foundation-ios.git", branch: "anton/plugins-experiments"),
+        .package(url: "https://github.com/rnr/openedx-app-foundation-ios.git", branch: "anton/iap-experiments"),
         .package(url: "https://github.com/segmentio/analytics-swift.git", from: "1.5.3"),
         .package(url: "https://github.com/segment-integrations/analytics-swift-firebase", from: "1.3.5"),
         .package(url: "https://github.com/braze-inc/braze-segment-swift.git", from: "2.2.0"),
