@@ -21,7 +21,7 @@ let package = Package(
         .package(url: "https://github.com/braze-inc/braze-segment-swift.git", from: "2.2.0"),
         .package(url: "https://github.com/SimplyDanny/SwiftLintPlugins", from: "0.57.0"),
         .package(url: "https://github.com/fernandolucheti/TestableMacro.git", from: "0.0.2"),
-        .package(url: "https://github.com/firebase/firebase-ios-sdk", from: "10.26.0"),
+        .package(url: "https://github.com/firebase/firebase-ios-sdk", from: "11.3.0"),
         .package(url: "https://github.com/fullstorydev/fullstory-swift-package-ios", from: "1.53.0")
     ],
     targets: [
