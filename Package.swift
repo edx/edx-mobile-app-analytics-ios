@@ -20,7 +20,9 @@ let package = Package(
         .package(url: "https://github.com/segment-integrations/analytics-swift-firebase", from: "1.3.5"),
         .package(url: "https://github.com/braze-inc/braze-segment-swift.git", from: "2.2.0"),
         .package(url: "https://github.com/SimplyDanny/SwiftLintPlugins", from: "0.57.0"),
-        .package(url: "https://github.com/fernandolucheti/TestableMacro.git", from: "0.0.2")
+        .package(url: "https://github.com/fernandolucheti/TestableMacro.git", from: "0.0.2"),
+        .package(url: "https://github.com/firebase/firebase-ios-sdk", from: "10.26.0"),
+        .package(url: "https://github.com/fullstorydev/fullstory-swift-package-ios", from: "1.53.0")
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -32,7 +34,9 @@ let package = Package(
                 .product(name: "Segment", package: "analytics-swift"),
                 .product(name: "SegmentFirebase", package: "analytics-swift-firebase"),
                 .product(name: "SegmentBraze", package: "braze-segment-swift"),
-                .product(name: "TestableMacro", package: "TestableMacro")
+                .product(name: "TestableMacro", package: "TestableMacro"),
+                .product(name: "FirebaseCrashlytics", package: "firebase-ios-sdk"),
+                .product(name: "FullStory", package: "fullstory-swift-package-ios")
             ],
             plugins: [
                 .plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins")
