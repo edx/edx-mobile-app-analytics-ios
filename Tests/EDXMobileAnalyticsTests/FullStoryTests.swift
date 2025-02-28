@@ -105,7 +105,6 @@ private extension FullStoryTests {
         }
         @Test("When call with nil parameters should set empty dictionary") func check2() throws {
             // given
-            let crashlytics: CrashlyticsProtocol = CrashlyticsMock()
             let fullstory = FullStoryMock.self
             fullstory.reset()
             let analyticService = FullStoryAnalyticsService(
@@ -127,7 +126,6 @@ private extension FullStoryTests {
     struct LogScreenTests {
         @Test("When call with parameters should set parameters") func check1() throws {
             // given
-            let crashlytics: CrashlyticsProtocol = CrashlyticsMock()
             let fullstory = FullStoryMock.self
             fullstory.reset()
             let page = FSPageMock()
