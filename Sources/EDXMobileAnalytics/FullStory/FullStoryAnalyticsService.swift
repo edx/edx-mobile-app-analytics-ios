@@ -28,18 +28,22 @@ final public class FullStoryAnalyticsService: NSObject, AnalyticsService, FSDele
     let firebaseEnabled: Bool
     let crashlytics: CrashlyticsProtocol
     let fullstoryType: FullStoryProtocol.Type
+
+    public convenience init(firebaseEnabled: Bool) {
+        self.init(firebaseEnabled: firebaseEnabled, crashlytics: Crashlytics.crashlytics(), fullstoryType: FS.self)
+    }
     
-    public init(
-        _ firebaseEnabled: Bool,
-        crashlytics: CrashlyticsProtocol = Crashlytics.crashlytics(),
-        fullstoryType: FullStoryProtocol.Type = FS.self
+    init(
+        firebaseEnabled: Bool,
+        crashlytics: CrashlyticsProtocol?,
+        fullstoryType: FullStoryProtocol.Type?
     ) {
         self.firebaseEnabled = firebaseEnabled
-        self.crashlytics = crashlytics
-        self.fullstoryType = fullstoryType
+        self.crashlytics = crashlytics ?? Crashlytics.crashlytics()
+        self.fullstoryType = fullstoryType ?? FS.self
         super.init()
-        fullstoryType.delegate = self
-        fullstoryType.restart()
+        self.fullstoryType.delegate = self
+        self.fullstoryType.restart()
     }
     
     public func identify(id: String, username: String?, email: String?) {

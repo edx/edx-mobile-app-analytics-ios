@@ -24,7 +24,11 @@ private extension FullStoryTests {
             let fullstory = FullStoryMock.self
             fullstory.reset()
             // when
-            let analyticService = FullStoryAnalyticsService(false, crashlytics: crashlytics, fullstoryType: fullstory)
+            let analyticService = FullStoryAnalyticsService(
+                firebaseEnabled: false,
+                crashlytics: crashlytics,
+                fullstoryType: fullstory
+            )
             // then
             #expect(analyticService.firebaseEnabled == false)
             #expect(analyticService.crashlytics is CrashlyticsMock)
@@ -35,7 +39,19 @@ private extension FullStoryTests {
         }
         @Test("When init without parameters should set default values") func check2() async throws {
             // when
-            let analyticService = FullStoryAnalyticsService(true)
+            let analyticService = FullStoryAnalyticsService(firebaseEnabled: true)
+            // then
+            #expect(analyticService.crashlytics is Crashlytics)
+            let isFullstoryTypeEqual: Bool = analyticService.fullstoryType == FS.self
+            #expect(isFullstoryTypeEqual)
+        }
+        @Test("When init with nil parameters should set default values") func check3() async throws {
+            // when
+            let analyticService = FullStoryAnalyticsService(
+                firebaseEnabled: false,
+                crashlytics: nil,
+                fullstoryType: nil
+            )
             // then
             #expect(analyticService.crashlytics is Crashlytics)
             let isFullstoryTypeEqual: Bool = analyticService.fullstoryType == FS.self
@@ -50,7 +66,11 @@ private extension FullStoryTests {
             // given
             let fullstory = FullStoryMock.self
             fullstory.reset()
-            let analyticService = FullStoryAnalyticsService(true, fullstoryType: fullstory)
+            let analyticService = FullStoryAnalyticsService(
+                firebaseEnabled: true,
+                crashlytics: nil,
+                fullstoryType: fullstory
+            )
             // when
             analyticService.identify(id: TestData.identifyID, username: nil, email: nil)
             // then
@@ -68,7 +88,11 @@ private extension FullStoryTests {
             // given
             let fullstory = FullStoryMock.self
             fullstory.reset()
-            let analyticService = FullStoryAnalyticsService(true, fullstoryType: fullstory)
+            let analyticService = FullStoryAnalyticsService(
+                firebaseEnabled: true,
+                crashlytics: nil,
+                fullstoryType: fullstory
+            )
             // when
             analyticService.logEvent(TestData.eventName, parameters: TestData.eventParameters)
             // then
@@ -81,9 +105,14 @@ private extension FullStoryTests {
         }
         @Test("When call with nil parameters should set empty dictionary") func check2() throws {
             // given
+            let crashlytics: CrashlyticsProtocol = CrashlyticsMock()
             let fullstory = FullStoryMock.self
             fullstory.reset()
-            let analyticService = FullStoryAnalyticsService(true, fullstoryType: fullstory)
+            let analyticService = FullStoryAnalyticsService(
+                firebaseEnabled: true,
+                crashlytics: nil,
+                fullstoryType: fullstory
+            )
             // when
             analyticService.logEvent(TestData.eventName, parameters: nil)
             // then
@@ -98,11 +127,16 @@ private extension FullStoryTests {
     struct LogScreenTests {
         @Test("When call with parameters should set parameters") func check1() throws {
             // given
+            let crashlytics: CrashlyticsProtocol = CrashlyticsMock()
             let fullstory = FullStoryMock.self
             fullstory.reset()
             let page = FSPageMock()
             fullstory.pageStub = page
-            let analyticService = FullStoryAnalyticsService(true, fullstoryType: fullstory)
+            let analyticService = FullStoryAnalyticsService(
+                firebaseEnabled: true,
+                crashlytics: nil,
+                fullstoryType: fullstory
+            )
             // when
             analyticService.logScreenEvent(TestData.eventName, parameters: TestData.eventParameters)
             // then
@@ -121,7 +155,11 @@ private extension FullStoryTests {
             fullstory.reset()
             let page = FSPageMock()
             fullstory.pageStub = page
-            let analyticService = FullStoryAnalyticsService(true, fullstoryType: fullstory)
+            let analyticService = FullStoryAnalyticsService(
+                firebaseEnabled: true,
+                crashlytics: nil,
+                fullstoryType: fullstory
+            )
             // when
             analyticService.logScreenEvent(TestData.eventName, parameters: nil)
             // then
@@ -138,7 +176,11 @@ private extension FullStoryTests {
         func check1() {
             // given
             let crashlytics = CrashlyticsMock()
-            let analyticService = FullStoryAnalyticsService(true, crashlytics: crashlytics)
+            let analyticService = FullStoryAnalyticsService(
+                firebaseEnabled: true,
+                crashlytics: crashlytics,
+                fullstoryType: nil
+            )
             // when
             analyticService.fullstoryDidStartSession(TestData.sessionURLString)
             // then
@@ -150,7 +192,11 @@ private extension FullStoryTests {
         func check2() {
             // given
             let crashlytics = CrashlyticsMock()
-            let analyticService = FullStoryAnalyticsService(false, crashlytics: crashlytics)
+            let analyticService = FullStoryAnalyticsService(
+                firebaseEnabled: false,
+                crashlytics: crashlytics,
+                fullstoryType: nil
+            )
             // when
             analyticService.fullstoryDidStartSession(TestData.sessionURLString)
             // then
