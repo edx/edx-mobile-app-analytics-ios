@@ -1,5 +1,5 @@
 {
-  "originHash" : "aa75406ff97bf77af672c326455e75425b255f9dca089e8766327c96248e2f30",
+  "originHash" : "cceead94bf836af7799c83449398bf142c9dbcaddcfb947e7050de2cbfb602d8",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -69,8 +69,17 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/firebase-ios-sdk",
       "state" : {
-        "revision" : "2e02253fd1ce99145bcbf1bb367ccf61bd0ca46b",
-        "version" : "11.6.0"
+        "revision" : "6318278e8e64d21f0fdcc69004395e4d34048aaf",
+        "version" : "11.8.1"
+      }
+    },
+    {
+      "identity" : "fullstory-swift-package-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/fullstorydev/fullstory-swift-package-ios",
+      "state" : {
+        "revision" : "298a6a846dfdf52e384e2f9e7f8c6970cf2061c6",
+        "version" : "1.56.1"
       }
     },
     {
@@ -78,8 +87,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/GoogleAppMeasurement.git",
       "state" : {
-        "revision" : "4f234bcbdae841d7015258fbbf8e7743a39b8200",
-        "version" : "11.4.0"
+        "revision" : "be0881ff728eca210ccb628092af400c086abda3",
+        "version" : "11.7.0"
       }
     },
     {
@@ -114,8 +123,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/gtm-session-fetcher.git",
       "state" : {
-        "revision" : "5cfe5f090c982de9c58605d2a82a4fc77b774fbd",
-        "version" : "4.1.0"
+        "revision" : "a2ab612cb980066ee56d90d60d8462992c07f24b",
+        "version" : "3.5.0"
       }
     },
     {
@@ -178,7 +187,7 @@
       "location" : "https://github.com/rnr/openedx-app-foundation-ios.git",
       "state" : {
         "branch" : "anton/plugins-experiments",
-        "revision" : "374beefe2271233e10c5fa5a012779689d05d817"
+        "revision" : "64c5b29e0fdde47b0d25adc00acb4dc2a6cf27c5"
       }
     },
     {
