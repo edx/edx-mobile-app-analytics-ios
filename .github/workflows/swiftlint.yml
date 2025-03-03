@@ -1,0 +1,33 @@
+name: SwiftLint
+
+on:
+  workflow_dispatch:
+
+  pull_request:
+
+jobs:
+  lint:
+    name: SwiftLint
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup
+        run:
+          xcodes select 16.1
+
+      - name: SwiftLint
+        run:
+          swift package plugin --allow-writing-to-package-directory swiftlint --reporter sarif --output swiftlint.report.sarif
+
+      - name: Prepare swiftlint.report.sarif
+        if: success() || failure()
+        run:
+          swift PrepareSarifToUpload.swift
+
+      - name: Upload report
+        uses: github/codeql-action/upload-sarif@v3
+        if: success() || failure()
+        with:
+          sarif_file: swiftlint.report.sarif
