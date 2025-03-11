@@ -3,7 +3,7 @@
 
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue?style=flat-square)](LICENSE)
 
-EDXMobileAnalytics is a Swift plugin for integrating analytics in edX iOS mobile applications. This plugin includes support for **Segment Analytics** and **Braze** (via Segment) to help developers efficiently track user behavior and events within their apps.
+EDXMobileAnalytics is a Swift plugin for integrating analytics in edX iOS mobile application. This plugin includes support for **Segment Analytics**, **Braze** (via Segment) and **FullStory** to help developers efficiently track user behavior and events within their apps.
 
 ## Repository
 
@@ -17,6 +17,11 @@ EDXMobileAnalytics is a Swift plugin for integrating analytics in edX iOS mobile
 - **Braze Integration** (via Segment):
   - Leverage Segment's Braze destination to deliver push notifications.
   - Track user engagement metrics seamlessly.
+- **FullStory**:
+  - Record and replay user sessions to analyze interactions in real-time.
+  - Capture clicks, scrolls, form interactions, and more.
+  - Track user journeys to identify friction points.
+  - Inspect event timelines and console logs to diagnose issues efficiently.
 
 ## Installation
 
@@ -27,7 +32,7 @@ EDXMobileAnalytics is a Swift plugin for integrating analytics in edX iOS mobile
 2. Navigate to project settings > Package Dependencies
 3. Click the '+' button to add a new package dependency
 4. Enter the package URL: https://github.com/edx/edx-mobile-app-analytics-ios
-5. Set the Dependency Rule to "Exact Version" and version to TBD
+5. Set the Dependency Rule to "Exact Version" and version to 1.0.3
 6. Click "Add Package"
 
 
@@ -57,7 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func initPlugins() {
-        // - Segment analyticы
+        // - Segment analytics
         let SegmentAnalyticsService = SegmentAnalyticsService(
             writeKey: "your_writeKey",
             addFirebaseAnalytics: true // or false
@@ -78,6 +83,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 )
         )
         
+        // - FullStory
+        let firebaseEnabled = true // or false. if true then FullStory's link will be added to Crashlytics logs
+        pluginManager.addPlugin(analyticsService: FullStoryAnalyticsService(firebaseEnabled: firebaseEnabled))
     }
 }
 ```
