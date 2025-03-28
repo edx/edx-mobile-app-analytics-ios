@@ -49,7 +49,6 @@ final public class SegmentAnalyticsService: SegmentAnalyticsServiceProtocol {
             name: event,
             properties: parameters
         )
-        print("!!!Cookies: \(HTTPCookieStorage.shared.cookies ?? [])")
     }
     
     public func logScreenEvent(_ event: String, parameters: [String: Any]?) {
